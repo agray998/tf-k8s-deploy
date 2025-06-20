@@ -43,11 +43,12 @@ resource "kubernetes_deployment" "nginx" {
           }
 
           volume_mount {
-            name       = "nginx-conf"
+            name       = "${kubernetes_config_map.nginx.metadata.0.name}" 
             mount_path = "/etc/nginx/conf.d/"
           }
         }
         volume {
+          name = "${kubernetes_config_map.nginx.metadata.0.name}"
           config_map {
             name = "${kubernetes_config_map.nginx.metadata.0.name}"
           }
