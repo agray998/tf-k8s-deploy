@@ -4,10 +4,6 @@ resource "kubernetes_deployment" "nginx" {
     labels = {
       app = "nginx"
     }
-    annotations = {
-      "config.linkerd.io/proxy-cpu-limit" = "10m"
-      "linkerd.io/inject" = "enabled"
-    }
   }
 
   spec {
@@ -23,6 +19,10 @@ resource "kubernetes_deployment" "nginx" {
       metadata {
         labels = {
           app = "nginx"
+        }
+        annotations = {
+          "config.linkerd.io/proxy-cpu-limit" = "10m"
+          "linkerd.io/inject" = "enabled"
         }
       }
 

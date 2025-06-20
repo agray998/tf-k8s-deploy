@@ -4,10 +4,6 @@ resource "kubernetes_deployment" "deploy" {
     labels = {
       app = "nodejs-${var.deployment_name}"
     }
-    annotations = {
-      "config.linkerd.io/proxy-cpu-limit" = "10m"
-      "linkerd.io/inject" = "enabled"
-    }
   }
 
   spec {
@@ -23,6 +19,10 @@ resource "kubernetes_deployment" "deploy" {
       metadata {
         labels = {
           app = "nodejs-${var.deployment_name}"
+        }
+        annotations = {
+          "config.linkerd.io/proxy-cpu-limit" = "10m"
+          "linkerd.io/inject" = "enabled"
         }
       }
 

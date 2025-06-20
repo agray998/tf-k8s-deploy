@@ -4,6 +4,10 @@ resource "kubernetes_pod" "redis" {
     labels = {
       app = "redis"
     }
+    annotations = {
+      "config.linkerd.io/proxy-cpu-limit" = "10m"
+      "linkerd.io/inject" = "enabled"
+    }
   }
 
   spec {
